@@ -1,0 +1,16 @@
+.home {
+  background-color: #ffe8c2;
+  min-height: 100vh;
+  height: 100%;
+  margin-top: 0;
+}
+
+.home h1,
+.home p {
+  margin-top: 0;
+}
+
+.home h1 {
+    padding-left: 2%;
+    padding-top: 2%;
+}
