@@ -1,0 +1,25 @@
+/* 
+.item{
+    display: block;
+    align-items: center;
+    justify-content: center;
+} */
+.item {
+    display: flex;
+    align-items: center;  /* This will vertically center the image */
+    justify-content: center; /* This will horizontally center the image */
+}
+h3{
+    display: inline;
+    margin: auto
+}
+img {
+    display: block; /* Block level to respect the margin settings */
+    margin: auto; /* This will horizontally center the image */
+    max-height: 100%; /* This ensures the image doesn't overflow the container vertically */
+    max-width: 100%; /* This ensures the image doesn't overflow the container horizontally */
+}
+
+li{
+    list-style: none;
+}
