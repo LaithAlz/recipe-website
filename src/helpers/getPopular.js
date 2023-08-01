@@ -5,8 +5,7 @@ export const getPopular = async () => {
     `https://api.spoonacular.com/recipes/random?apiKey=${key}&number=9`
   );
   const data = await api.json();
-  console.log(data);
+  // console.log(data);
   return data;
 };
 
-// export default getPopular;

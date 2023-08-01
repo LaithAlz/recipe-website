@@ -1,0 +1,36 @@
+/* body{
+    background-color: #424C55;
+} */
+.create-recipe {
+  margin: 0 auto;
+  padding: 4rem 0;
+  width: 90%;
+  max-width: 60rem;
+}
+
+.create-recipe form {
+  align-items: center;
+  box-sizing: border-box;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: hsl(0, 0%, 100%);
+  border: 4px solid hsl(0, 0%, 90%);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.create-recipe input[type="number"] {
+  width: 50px;
+  height: 20px;
+}
+
+.create-recipe button {
+  padding: 5px;
+  /* padding-bottom: 0px; */
+  width: 80px;
+  border-radius: 5px;
+  border: none;
+  background-color: #4f5d75;
+  color: white;
+}

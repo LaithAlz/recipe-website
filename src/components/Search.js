@@ -6,6 +6,7 @@ const Search = ({ setSearch }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const inputValue = e.target.elements[0].value;
+    
     setSearch(inputValue);
   };
   return (

@@ -17,6 +17,8 @@ const Navbar = ({ setSearch }) => {
       <Link to="/">
         <img src={Logo} alt="My Recipes" />
       </Link>
+      <Link to='/addrecipe'>Add recipe
+      </Link>
 
       <Search setSearch={setSearch} />
 

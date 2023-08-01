@@ -6,8 +6,10 @@ import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 
 const Home = ({ search }) => {
-  const { random } = useContext(recipesContext);
-  console.log(random);
+  const { random, recipeFinder } = useContext(recipesContext);
+
+  // console.log(search);
+  // console.log(recipeFinder);
 
   if (!random)
     return (
@@ -20,20 +22,19 @@ const Home = ({ search }) => {
     <div className="home">
       <h1>Popular Items:</h1>
       <AliceCarousel autoPlay autoPlayInterval="3000">
-
-      {random.map((popular) => {
-        return (
-          <div className="item">
-            <ul>
+        {random.map((popular) => {
+          return (
+            <div className="item">
+              <ul>
                 <PopularItem
                   title={popular.title}
                   id={popular.id}
                   image={popular.image}
                 />
-            </ul>
-          </div>
-        );
-      })}
+              </ul>
+            </div>
+          );
+        })}
       </AliceCarousel>
       {search}
     </div>
