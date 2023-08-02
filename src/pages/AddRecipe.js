@@ -2,16 +2,46 @@ import { useState } from "react";
 import "../styles/AddRecipe.css";
 
 const AddRecipe = () => {
-  const [ingredients, setIngredients] = useState([]);
-  const [item, setItem] = useState("");
+  // const [ingredients, setIngredients] = useState([]);
+  // const [item, setItem] = useState("");
+  // const [cookTime, setCookTIme] = useState(0);
+  // const [prepTime, setPrepTike] = useState(0);
+  // const [servings, setServings] = useState(0);
+  // const [recipes, setRecipes] = useState({});
 
+  const [formData, setFormData] = useState({
+    item: "",
+    ingredients: [],
+    cookTime: 0,
+    prepTime: 0,
+    servings: 0,
+  });
 
-  const addIngredient = (e, item) => {
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const addIngredient = (e) => {
     e.preventDefault();
-    setIngredients((prev) => {
-      return [...ingredients, item];
-    });
+    if (formData.item === "") {
+      return;
+    }
+    const newIngredients = [...formData.ingredients, formData.item];
+    setFormData((prevData) => ({
+      ...prevData,
+      ingredients: newIngredients,
+      item: "",
+    }));
+  };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+    localStorage.setItem("recipes", JSON.stringify(formData));
   };
 
   return (
@@ -20,43 +50,58 @@ const AddRecipe = () => {
 
       <form
         onSubmit={(e) => {
-          addIngredient(e, item);
+          handleSubmit(e);
         }}
       >
         <label>Add images</label>
         <input type="file" />
 
         <label>Cook Time (in minutes)</label>
-        <input type="number" />
-        {/* <br /> */}
+        <input
+          name="cookTime"
+          value={formData.cookTime}
+          onChange={handleInputChange}
+          type="number"
+        />
 
         <label>Prep Time (in minutes)</label>
-        <input type="number" />
-        {/* <br /> */}
+        <input
+          name="prepTime"
+          value={formData.prepTime}
+          onChange={handleInputChange}
+          type="number"
+        />
 
         <label>Servings</label>
-        <input type="number" />
-        {/* <br /> */}
+        <input
+          name="servings"
+          value={formData.servings}
+          onChange={handleInputChange}
+          type="number"
+        />
+
         <div className="ingredients">
           <h3>Ingredients: </h3>
 
           <input
             type="text"
-            value={item}
-            onChange={(e) => {
-              setItem(e.target.value);
-            }}
+            name="item"
+            value={formData.item}
+            onChange={handleInputChange}
           />
         </div>
 
-        <button>Add Ingredient</button>
-
+        <button id="add-ingredient" onClick={addIngredient}>
+          Add Ingredient
+        </button>
         {/* {item} */}
         <ul>
-          {ingredients.map((ingredient, index) => {
-            return <li key={index}>{ingredient}</li>;
-          })}
+          {formData.ingredients.map((ingredient, index) => (
+            <li key={index}>{ingredient}</li>
+          ))}
         </ul>
+
+        <button id="submit">ADD RECIPE</button>
       </form>
     </div>
   );
