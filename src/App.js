@@ -8,27 +8,28 @@ import { getPopular } from "./helpers/getPopular";
 import { useEffect, useState } from "react";
 import { getRecipes } from "./helpers/getRecipes";
 import AddRecipe from "./pages/AddRecipe";
+import RecipesList from "./pages/RecipesList";
 
 function App() {
   const [random, setRandom] = useState(null);
   const [search, setSearch] = useState("");
   const [recipeFinder, setRecipeFinder] = useState("");
 
-  // useEffect(() => {
-  //   const fetchPopular = async () => {
-  //     const response = await getPopular();
-  //     setRandom(response.recipes);
-  //   };
-  //   fetchPopular();
-  // }, []);
+  useEffect(() => {
+    const fetchPopular = async () => {
+      const response = await getPopular();
+      setRandom(response.recipes);
+    };
+    fetchPopular();
+  }, []);
 
-  // useEffect(() => {
-  //   const fetchSearch = async (search) => {
-  //     const response = await getRecipes(search);
-  //     setRecipeFinder(response);
-  //   };
-  //   fetchSearch(search);
-  // }, [search]);
+  useEffect(() => {
+    const fetchSearch = async (search) => {
+      const response = await getRecipes(search);
+      setRecipeFinder(response);
+    };
+    fetchSearch(search);
+  }, [search]);
 
   return (
     <div className="App">
@@ -38,6 +39,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home search={search} />} />
             <Route path="/addrecipe" element={<AddRecipe />} />
+            <Route path="/myrecipes" element={<RecipesList />} />
           </Routes>
           <Footer />
         </recipesContext.Provider>

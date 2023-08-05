@@ -1,24 +1,27 @@
 import { useState } from "react";
 import "../styles/AddRecipe.css";
+import { v4 as uuidv4 } from "uuid";
+
 
 const AddRecipe = () => {
-  // const [ingredients, setIngredients] = useState([]);
-  // const [item, setItem] = useState("");
-  // const [cookTime, setCookTIme] = useState(0);
-  // const [prepTime, setPrepTike] = useState(0);
-  // const [servings, setServings] = useState(0);
-  // const [recipes, setRecipes] = useState({});
-
   const [formData, setFormData] = useState({
+    name: "",
     item: "",
     ingredients: [],
     cookTime: 0,
     prepTime: 0,
     servings: 0,
+    image: "",
   });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    // if (name === "image") {
+    //   setFormData((prevData) => ({
+    //     ...prevData,
+    //     [name]: getBase64Image(value),
+    //   }));
+    // }
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -40,8 +43,25 @@ const AddRecipe = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
-    localStorage.setItem("recipes", JSON.stringify(formData));
+    // console.log(formData);
+
+    const newRecipe = {
+      ...formData,
+      id: uuidv4(),
+    };
+
+    let recipes = JSON.parse(localStorage.getItem("recipes")) || [];
+    recipes.push(newRecipe);
+    localStorage.setItem("recipes", JSON.stringify(recipes));
+
+    setFormData({
+      item: "",
+      ingredients: [],
+      cookTime: 0,
+      prepTime: 0,
+      servings: 0,
+      image: "",
+    });
   };
 
   return (
@@ -53,8 +73,21 @@ const AddRecipe = () => {
           handleSubmit(e);
         }}
       >
+        <label>Recipe Name</label>
+        <input
+          name="name"
+          value={formData.name}
+          onChange={handleInputChange}
+          type="text"
+        />
+
         <label>Add images</label>
-        <input type="file" />
+        <input
+          type="file"
+          name="image"
+          value={formData.image}
+          onChange={handleInputChange}
+        />
 
         <label>Cook Time (in minutes)</label>
         <input

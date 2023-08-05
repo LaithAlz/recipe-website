@@ -17,17 +17,15 @@ const Navbar = ({ setSearch }) => {
       <Link to="/">
         <img src={Logo} alt="My Recipes" />
       </Link>
-      <Link to='/addrecipe'>Add recipe
-      </Link>
 
       <Search setSearch={setSearch} />
 
       <div className="links">
         <Link to="/">Home</Link>
         <Link to="/myrecipes">My Recipes</Link>
-        <Link to="/desserts">Dessert</Link>
         <Link to="/vegetarian">Vegetarian</Link>
         <Link to="/random">Random</Link>
+        <Link to="/addrecipe">Add recipe</Link>
       </div>
 
       <div className="hidden-menu">
