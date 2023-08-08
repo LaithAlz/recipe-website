@@ -8,7 +8,9 @@ const RecipesList = () => {
   return (
     <div className="recipes">
       {recipes.map((recipe) => {
-        return <RecipeItem key={recipe.id} recipe={recipe}/>
+        return (
+            <RecipeItem key={recipe.id} recipe={recipe} />
+        );
       })}
     </div>
   );

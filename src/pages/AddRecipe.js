@@ -2,30 +2,35 @@ import { useState } from "react";
 import "../styles/AddRecipe.css";
 import { v4 as uuidv4 } from "uuid";
 
-
 const AddRecipe = () => {
   const [formData, setFormData] = useState({
     name: "",
     item: "",
     ingredients: [],
-    cookTime: 0,
-    prepTime: 0,
-    servings: 0,
+    cookTime: "0",
+    prepTime: "0",
+    servings: "0",
     image: "",
   });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    // if (name === "image") {
-    //   setFormData((prevData) => ({
-    //     ...prevData,
-    //     [name]: getBase64Image(value),
-    //   }));
-    // }
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+
+    if (name === "image") {
+      let reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: reader.result,
+        }));
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
 
   const addIngredient = (e) => {
@@ -57,9 +62,9 @@ const AddRecipe = () => {
     setFormData({
       item: "",
       ingredients: [],
-      cookTime: 0,
-      prepTime: 0,
-      servings: 0,
+      cookTime: "0",
+      prepTime: "0",
+      servings: "0",
       image: "",
     });
   };
@@ -82,12 +87,7 @@ const AddRecipe = () => {
         />
 
         <label>Add images</label>
-        <input
-          type="file"
-          name="image"
-          value={formData.image}
-          onChange={handleInputChange}
-        />
+        <input type="file" name="image" onChange={handleInputChange} />
 
         <label>Cook Time (in minutes)</label>
         <input

@@ -1,0 +1,61 @@
+.details {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f4f4f4;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .details h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .details .image img {
+    display: block;
+    max-width: 100%;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+  }
+  
+  .details .cookTime,
+  .details .prepTime,
+  .details .servings {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #555;
+  }
+  
+  .details .ingredients {
+    border-top: 1px solid #ddd;
+    padding: 15px;
+    background: #f9f9f9;
+    margin-top: 20px;
+  }
+  
+  .details .ingredients li {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 25px;
+  }
+  
+  .details .ingredients li:before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .details .ingredients h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+    text-decoration: underline;
+  }
+  

@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { getRecipes } from "./helpers/getRecipes";
 import AddRecipe from "./pages/AddRecipe";
 import RecipesList from "./pages/RecipesList";
+import RecipeDetails from "./components/RecipeDetails";
 
 function App() {
   const [random, setRandom] = useState(null);
@@ -40,6 +41,7 @@ function App() {
             <Route path="/" element={<Home search={search} />} />
             <Route path="/addrecipe" element={<AddRecipe />} />
             <Route path="/myrecipes" element={<RecipesList />} />
+            <Route path="/myrecipes/:id" element={<RecipeDetails />} />
           </Routes>
           <Footer />
         </recipesContext.Provider>
